@@ -1,0 +1,24 @@
+name: TSLping
+version: '1.0'
+main: com.zvbj.tSLping.TSLping
+api-version: '1.21'
+authors: [ Zvbj ]
+description: TSL服务器の插件 - 玩家延迟查询工具
+folia-supported: true
+
+commands:
+  tping:
+    description: 查看玩家延迟信息
+    usage: /tping <player|all|reload>
+    aliases: [ping, tp]
+
+permissions:
+  tslping.use:
+    description: 使用 /tping <player> 命令
+    default: true
+  tslping.all:
+    description: 使用 /tping all 命令
+    default: op
+  tslping.reload:
+    description: 使用 /tping reload 命令
+    default: op
