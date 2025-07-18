@@ -7,7 +7,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class TSLping extends JavaPlugin {
 
     private ConfigManager configManager;
-    private PingCommand pingCommand;
 
     @Override
     public void onEnable() {
@@ -15,26 +14,26 @@ public final class TSLping extends JavaPlugin {
         this.configManager = new ConfigManager(this);
 
         // 初始化命令处理器
-        this.pingCommand = new PingCommand(this, configManager);
+        PingCommand pingCommand = new PingCommand(this, configManager);
 
-        // 注册命令和Tab补全
-        getCommand("tping").setExecutor(pingCommand);
-        getCommand("tping").setTabCompleter(pingCommand);
+        // 注册命令和Tab补全，添加空值检查
+        if (getCommand("tping") != null) {
+            getCommand("tping").setExecutor(pingCommand);
+            getCommand("tping").setTabCompleter(pingCommand);
+        } else {
+            getLogger().severe("无法注册命令 'tping'，请检查plugin.yml配置");
+            return;
+        }
 
-        // 插件启动成功消息
-        getLogger().info("TSLping 插件已成功启用！");
+        // 插件启动成功消息 - 使用配置的消息
+        getLogger().info(configManager.getMessageWithoutPrefix("success.plugin_enabled"));
         getLogger().info("支持命令: /tping <player>, /tping all, /tping reload");
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("TSLping 插件已关闭！");
-    }
-
-    /**
-     * 获取配置管理器
-     */
-    public ConfigManager getConfigManager() {
-        return configManager;
+        getLogger().info(configManager != null ?
+            configManager.getMessageWithoutPrefix("success.plugin_disabled") :
+            "TSLping 插件已关闭！");
     }
 }

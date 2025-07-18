@@ -1,15 +1,9 @@
 # TSLping 插件配置文件
 
-messages:
-  ping_format: "&a{player}: &f{ping}ms"
-  page_header: "&6在线玩家 Ping 排行 - 第 {page}/{total_pages} 页"
-  no_permission: "&c你没有权限执行此命令。"
-  not_player: "&c该命令只能由玩家执行。"
-  player_not_found: "&c找不到玩家: {player}"
-  player_offline: "&c玩家 {player} 不在线。"
-  config_reloaded: "&a配置文件已重载！"
-  no_players_online: "&c当前没有在线玩家。"
+# 插件前缀配置
+prefix: "&6[TSL喵]&r "
 
+# 功能设置
 settings:
   entries_per_page: 10
   ping_colors:
@@ -17,10 +11,7 @@ settings:
     yellow: 200   # 100-200ms 显示黄色
     # > 200ms 显示红色
 
+# 分页设置
 pagination:
-  previous_button: "&c[← 上一页]"
-  next_button: "&a[下一页 →]"
-  current_page_color: "&e"
-  button_hover_text:
-    previous: "&7点击查看上一页"
-    next: "&7点击查看下一页"
+  show_navigation: true
+  navigation_clickable: true

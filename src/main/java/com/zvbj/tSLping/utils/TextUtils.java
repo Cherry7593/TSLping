@@ -48,7 +48,7 @@ public class TextUtils {
             Component prevButton = createClickableButton(
                 config.getPreviousButton(),
                 "/tping all " + (currentPage - 1),
-                config.getPreviousHoverText()
+                config.getPreviousHover()
             );
             result = result.append(prevButton);
         }
@@ -62,7 +62,7 @@ public class TextUtils {
             Component nextButton = createClickableButton(
                 config.getNextButton(),
                 "/tping all " + (currentPage + 1),
-                config.getNextHoverText()
+                config.getNextHover()
             );
             result = result.append(nextButton);
         }

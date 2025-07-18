@@ -1,0 +1,38 @@
+# TSLping 插件消息配置文件
+
+# 基础消息
+ping_format: "&a{player}: &f{ping}ms"
+page_header: "&6在线玩家 Ping 排行 - 第 {page}/{total_pages} 页"
+no_permission: "&c你没有权限执行此命令。"
+not_player: "&c该命令只能由玩家执行。"
+player_not_found: "&c找不到玩家: {player}"
+player_offline: "&c玩家 {player} 不在线。"
+config_reloaded: "&a配置文件已重载！"
+no_players_online: "&c当前没有在线玩家。"
+
+# 命令帮助消息
+help_header: "&6=== TSLping 命令帮助 ==="
+help_ping_player: "&e/tping <玩家名> &7- 查看指定玩家的延迟"
+help_ping_all: "&e/tping all [页码] &7- 查看所有在线玩家的延迟"
+help_reload: "&e/tping reload &7- 重载配置文件"
+help_footer: "&6========================="
+
+# 分页消息
+pagination:
+  previous_button: "&c[← 上一页]"
+  next_button: "&a[下一页 →]"
+  current_page_indicator: "&e第 {page} 页，共 {total_pages} 页"
+  page_navigation_hover:
+    previous: "&7点击查看上一页"
+    next: "&7点击查看下一页"
+
+# 错误消息
+errors:
+  invalid_page: "&c无效的页码: {page}"
+  command_error: "&c命令执行时发生错误"
+  config_load_error: "&c配置文件加载失败"
+
+# 成功消息
+success:
+  plugin_enabled: "&a插件已成功启用！"
+  plugin_disabled: "&c插件已关闭！"

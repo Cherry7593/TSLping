@@ -98,17 +98,17 @@ public class PingCommand implements CommandExecutor, TabCompleter {
         Player targetPlayer = PingHandler.findPlayer(playerName);
 
         if (targetPlayer == null) {
-            sender.sendMessage(TextUtils.colorize(config.getMessageWithPlaceholder("player_not_found", "player", playerName)));
+            sender.sendMessage(TextUtils.colorize(config.getMessage("player_not_found", "player", playerName)));
             return;
         }
 
         if (!targetPlayer.isOnline()) {
-            sender.sendMessage(TextUtils.colorize(config.getMessageWithPlaceholder("player_offline", "player", playerName)));
+            sender.sendMessage(TextUtils.colorize(config.getMessage("player_offline", "player", playerName)));
             return;
         }
 
         int ping = PingHandler.getPlayerPing(targetPlayer);
-        String message = config.getFormattedMessage("ping_format", targetPlayer.getName(), String.valueOf(ping));
+        String message = config.getPlayerPingMessage("ping_format", targetPlayer.getName(), String.valueOf(ping));
         sender.sendMessage(TextUtils.colorize(message));
     }
 
@@ -116,16 +116,18 @@ public class PingCommand implements CommandExecutor, TabCompleter {
      * 发送命令使用说明
      */
     private void sendUsage(CommandSender sender) {
-        sender.sendMessage(TextUtils.colorize("&6TSLping 命令使用说明:"));
-        sender.sendMessage(TextUtils.colorize("&a/tping <玩家名> &7- 查看指定玩家的延迟"));
+        sender.sendMessage(TextUtils.colorize(config.getMessageWithoutPrefix("help_header")));
+        sender.sendMessage(TextUtils.colorize(config.getMessageWithoutPrefix("help_ping_player")));
 
         if (sender.hasPermission("tslping.all")) {
-            sender.sendMessage(TextUtils.colorize("&a/tping all [页码] &7- 查看所有在线玩家的延迟"));
+            sender.sendMessage(TextUtils.colorize(config.getMessageWithoutPrefix("help_ping_all")));
         }
 
         if (sender.hasPermission("tslping.reload")) {
-            sender.sendMessage(TextUtils.colorize("&a/tping reload &7- 重载插件配置"));
+            sender.sendMessage(TextUtils.colorize(config.getMessageWithoutPrefix("help_reload")));
         }
+
+        sender.sendMessage(TextUtils.colorize(config.getMessageWithoutPrefix("help_footer")));
     }
 
     @Override
