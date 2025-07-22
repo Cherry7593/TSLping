@@ -3,6 +3,7 @@
 # 基础消息
 ping_format: "&a{player}: &f{ping}ms"
 page_header: "&6在线玩家 Ping 排行 - 第 {page}/{total_pages} 页"
+server_average_ping: "&b服务器平均延迟: &f{average_ping}ms"
 no_permission: "&c你没有权限执行此命令。"
 not_player: "&c该命令只能由玩家执行。"
 player_not_found: "&c找不到玩家: {player}"

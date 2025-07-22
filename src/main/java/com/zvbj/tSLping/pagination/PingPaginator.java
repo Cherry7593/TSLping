@@ -33,6 +33,11 @@ public class PingPaginator {
         if (page < 1) page = 1;
         if (page > totalPages) page = totalPages;
 
+        // 计算并显示服务器平均延迟
+        double averagePing = PingHandler.getAveragePing();
+        String averagePingMessage = config.getAveragePingMessage(averagePing);
+        player.sendMessage(TextUtils.colorize(averagePingMessage));
+
         // 发送页面标题
         String header = config.getPageHeader(page, totalPages);
         player.sendMessage(TextUtils.colorize(header));

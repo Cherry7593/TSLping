@@ -149,4 +149,12 @@ public class ConfigManager {
     public String getNextHover() {
         return getMessageWithoutPrefix("pagination.page_navigation_hover.next");
     }
+
+    /**
+     * 获取服务器平均延迟消息
+     */
+    public String getAveragePingMessage(double averagePing) {
+        String formattedPing = String.format("%.1f", averagePing);
+        return getMessage("server_average_ping", "average_ping", formattedPing);
+    }
 }

@@ -26,6 +26,21 @@ public class PingHandler {
     }
 
     /**
+     * 计算服务器平均延迟
+     */
+    public static double getAveragePing() {
+        List<PlayerPingInfo> allPlayers = getAllPlayersPing();
+        if (allPlayers.isEmpty()) {
+            return 0.0;
+        }
+
+        return allPlayers.stream()
+                .mapToInt(PlayerPingInfo::getPing)
+                .average()
+                .orElse(0.0);
+    }
+
+    /**
      * 根据玩家名称查找在线玩家
      */
     public static Player findPlayer(String playerName) {
