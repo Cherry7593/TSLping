@@ -33,24 +33,23 @@ public class PingPaginator {
         if (page < 1) page = 1;
         if (page > totalPages) page = totalPages;
 
-        // 计算并显示服务器平均延迟
+        // 显示分割线
+        player.sendMessage(TextUtils.colorize(config.getSeparatorLine()));
+
+        // 计算并显示服务器平均延迟（右对齐和玩家ping对齐）
         double averagePing = PingHandler.getAveragePing();
         String averagePingMessage = config.getAveragePingMessage(averagePing);
         player.sendMessage(TextUtils.colorize(averagePingMessage));
-
-        // 发送页面标题
-        String header = config.getPageHeader(page, totalPages);
-        player.sendMessage(TextUtils.colorize(header));
 
         // 计算当前页的数据范围
         int startIndex = (page - 1) * entriesPerPage;
         int endIndex = Math.min(startIndex + entriesPerPage, allPlayers.size());
 
-        // 发送当前页的ping信息
+        // 发送当前页的ping信息，使用新的格式化方法
         for (int i = startIndex; i < endIndex; i++) {
             PingHandler.PlayerPingInfo info = allPlayers.get(i);
-            Component pingComponent = createPingEntry(i + 1, info.getPlayerName(), info.getPing());
-            player.sendMessage(pingComponent);
+            Component pingEntry = TextUtils.createFormattedPingEntry(i + 1, info.getPlayerName(), info.getPing(), config);
+            player.sendMessage(pingEntry);
         }
 
         // 发送分页按钮
@@ -58,17 +57,6 @@ public class PingPaginator {
             Component paginationButtons = TextUtils.createPaginationButtons(page, totalPages, config);
             player.sendMessage(paginationButtons);
         }
-    }
-
-    /**
-     * 创建单个ping条目的组件
-     */
-    private Component createPingEntry(int rank, String playerName, int ping) {
-        String rankStr = String.format("&7#%d ", rank);
-        Component rankComponent = TextUtils.colorize(rankStr);
-        Component pingComponent = TextUtils.getPingComponent(playerName, ping, config);
-
-        return rankComponent.append(pingComponent);
     }
 
     /**

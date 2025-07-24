@@ -1,6 +1,7 @@
 package com.zvbj.tSLping.config;
 
 import com.zvbj.tSLping.TSLping;
+import com.zvbj.tSLping.utils.TextUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -59,11 +60,10 @@ public class ConfigManager {
     }
 
     /**
-     * 获取消息（带前缀）
+     * 获取消息（去除前缀，简洁显示）
      */
     public String getMessage(String key) {
-        String message = messageConfig.getString(key, "&c配置项 " + key + " 未找到");
-        return getPrefix() + message;
+        return messageConfig.getString(key, "&c配置项 " + key + " 未找到");
     }
 
     /**
@@ -151,10 +151,17 @@ public class ConfigManager {
     }
 
     /**
-     * 获取服务器平均延迟消息
+     * 获取服务器平均延迟消息（无前缀，带颜色）
      */
     public String getAveragePingMessage(double averagePing) {
-        String formattedPing = String.format("%.1f", averagePing);
-        return getMessage("server_average_ping", "average_ping", formattedPing);
+        String formattedPing = TextUtils.getFormattedAveragePing(averagePing, this);
+        return getMessageWithoutPrefix("server_average_ping").replace("{average_ping}", formattedPing);
+    }
+
+    /**
+     * 获取分割线消息
+     */
+    public String getSeparatorLine() {
+        return getMessageWithoutPrefix("separator_line");
     }
 }
